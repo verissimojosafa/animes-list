@@ -1,6 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+html {
+	scrollbar-color: rgba(82, 2, 167, 1) rgba(1, 1, 1, 0.1);
+  	scrollbar-width: thin;
+}
+body {
+	overflow-y: scroll;
+	background-color: #111;
+	color: #fff;
+	font-family: 'Roboto', Arial, sans-serif;
+}
+.animes-info {
+	padding-right: auto;
+}
+.animes-info div p {
+	text-indent: 2em;
+	text-align: justify;
+}
+
 .list {
 	overflow-y: scroll;
 	height: 100vh;
+  	scrollbar-width: none;
 }
 
 li.anime {
