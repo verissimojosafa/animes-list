@@ -1,6 +1,6 @@
 const api = "https://kitsu.io/api/edge";
 const endpoint = "/anime";
-let selectedAnimeContainer = null;
+let animesInfoContainer = null;
 const defaultConfig = {
   limit: 10,
   offset: 0,
@@ -21,22 +21,47 @@ const getAnimes = ({ limit, offset, url }) => {
   return axios.get(target + queryParams);
 };
 
-const moreInformation = ({ synopsis, name, image, youtubeVideoId }) => {
+const moreInformation = ({ id, synopsis, name, image, youtubeVideoId }) => {
+  const div = document.createElement("div");
   const figure = document.createElement("figure");
   const figcaption = document.createElement("figcaption");
   const img = document.createElement("img");
   const p = document.createElement("p");
   const hr = document.createElement("hr");
+
+  div.setAttribute("id", "anime-info-" + id);
+  div.setAttribute("data-anime-id", id);
+
+  div.appendChild(figure, animesInfoContainer.firstChild);
+  div.appendChild(p, animesInfoContainer.firstChild);
+  div.appendChild(hr, animesInfoContainer.firstChild);
+
   figure.appendChild(img);
   figure.appendChild(figcaption);
+
   figcaption.textContent = name;
   img.src = image;
   img.classList.add("img-fluid");
   p.textContent = synopsis;
 
-  selectedAnimeContainer.querySelector("div.animes-info").appendChild(figure);
-  selectedAnimeContainer.querySelector("div.animes-info").appendChild(p);
-  selectedAnimeContainer.querySelector("div.animes-info").appendChild(hr);
+  animesInfoContainer.insertBefore(div, animesInfoContainer.firstChild);
+  gotoAnimeInfo(id);
+};
+
+const animeIsNotInTheList = (animeId) => {
+  let isNotInTheList = true;
+  Object.values(animesInfoContainer.children).forEach((anime) => {
+    if (anime.dataset.animeId == animeId) {
+      isNotInTheList = false;
+      return;
+    }
+  });
+
+  return isNotInTheList;
+};
+
+const gotoAnimeInfo = (animeId) => {
+  window.location = "#anime-info-" + animeId;
 };
 
 const mountList = (animes) => {
@@ -47,10 +72,12 @@ const mountList = (animes) => {
     const figure = document.createElement("figure");
     const figcaption = document.createElement("figcaption");
     const img = document.createElement("img");
-
+    animeIsNotInTheList(anime.id);
     li.onclick = () => {
-      moreInformation(anime);
+      if (animeIsNotInTheList(anime.id)) moreInformation(anime);
+      else gotoAnimeInfo(anime.id);
     };
+    li.setAttribute("id", anime.id);
     li.classList.add("anime");
     li.appendChild(figure);
     figure.appendChild(img);
@@ -73,6 +100,7 @@ const adjustAnimeData = (animes) => {
       ? attributes.coverImage.original
       : attributes.posterImage.original;
     const data = {
+      id: anime.id,
       name: title,
       image: coverImage,
       synopsis: attributes.synopsis,
@@ -100,6 +128,6 @@ const resetDefaultConfig = () => {
   defaultConfig.url = "";
 };
 
-const setSelectedAnimeContainer = (element) => {
-  selectedAnimeContainer = element;
+const setAnimesInfoContainer = (element) => {
+  animesInfoContainer = element;
 };
