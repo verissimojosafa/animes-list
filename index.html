@@ -26,11 +26,11 @@
 	<div class="main-content container mt-5">
 		<div class="row">
 			<div class="col-sm-4">				
-				<div class="anime-list" style="overflow-y: scroll; height: 100vh"></div>
+				<div class="anime-list list"></div>
 			</div>
 
-			<div class="col-sm-8 selected-anime" style="overflow-y: scroll; height: 100vh">
-				<div class="animes-info"></div>
+			<div class="col-sm-8">
+				<div class="animes-info list"></div>
 			</div>
 		</div>
 	</div>
@@ -49,9 +49,9 @@
 			const buttonToShowAnimes = document.querySelector('button.show-animes');
 			const buttonToClearList = document.querySelector('button.clear-animes')
 			const buttonToShowMore = document.querySelector('button.show-more');
-			const selectedAnime = document.querySelector('div.selected-anime');
+			const animesInfo = document.querySelector('div.animes-info');
 
-			setSelectedAnimeContainer(selectedAnime);
+			setAnimesInfoContainer(animesInfo);
 
 			buttonToShowAnimes.onclick = event => {
 				showAnimes(animeList);

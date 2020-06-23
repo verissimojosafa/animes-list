@@ -1,10 +1,10 @@
-li.anime {
-	cursor: pointer;
+.list {
+	overflow-y: scroll;
+	height: 100vh;
 }
 
-div.selected-anime {
-	position: sticky;
-  	top: 0;
+li.anime {
+	cursor: pointer;
 }
 
 ul {
