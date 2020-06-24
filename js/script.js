@@ -24,6 +24,9 @@ const getAnimes = ({ limit, offset, url }) => {
 const moreInformation = ({ id, synopsis, name, image, youtubeVideoId }) => {
   const div = document.createElement("div");
   const figure = document.createElement("figure");
+  const divToFigcaption = document.createElement("div");
+  const pToFigcaption = document.createElement("p");
+  const aToFigcaption = document.createElement("a");
   const figcaption = document.createElement("figcaption");
   const img = document.createElement("img");
   const p = document.createElement("p");
@@ -39,9 +42,31 @@ const moreInformation = ({ id, synopsis, name, image, youtubeVideoId }) => {
   figure.appendChild(img);
   figure.appendChild(figcaption);
 
-  figcaption.textContent = name;
+  divToFigcaption.classList.add("flex-row");
+  divToFigcaption.classList.add("space-between");
+  pToFigcaption.textContent = name;
+  aToFigcaption.setAttribute("target", "_blank");
+  aToFigcaption.textContent = "Trailer";
+  youtubeVideoId = null;
+  if (youtubeVideoId !== null) {
+    aToFigcaption.setAttribute(
+      "href",
+      "https://www.youtube.com/watch?v=" + youtubeVideoId
+    );
+  } else {
+    aToFigcaption.setAttribute(
+      "href",
+      "https://www.youtube.com/results?search_query=" + name
+    );
+  }
+  divToFigcaption.appendChild(pToFigcaption);
+  divToFigcaption.appendChild(aToFigcaption);
+  figcaption.appendChild(divToFigcaption);
+
   img.src = image;
   img.classList.add("img-fluid");
+
+  p.classList.add("indent");
   p.textContent = synopsis;
 
   animesInfoContainer.insertBefore(div, animesInfoContainer.firstChild);
