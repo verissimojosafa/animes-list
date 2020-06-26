@@ -90,31 +90,9 @@ const gotoAnimeInfo = (animeId) => {
 };
 
 const mountList = (animes) => {
-  const ul = document.createElement("ul");
+  animes.forEach((anime) => {});
 
-  animes.forEach((anime) => {
-    const li = document.createElement("li");
-    const figure = document.createElement("figure");
-    const figcaption = document.createElement("figcaption");
-    const img = document.createElement("img");
-    animeIsNotInTheList(anime.id);
-    li.onclick = () => {
-      if (animeIsNotInTheList(anime.id)) moreInformation(anime);
-      else gotoAnimeInfo(anime.id);
-    };
-    li.setAttribute("id", anime.id);
-    li.classList.add("anime");
-    li.appendChild(figure);
-    figure.appendChild(img);
-    figure.appendChild(figcaption);
-    figcaption.textContent = anime.name;
-    img.src = anime.image;
-    img.classList.add("img-fluid");
-
-    ul.appendChild(li);
-  });
-
-  return ul;
+  return animesItemsHTML.slice(0, 4);
 };
 
 const adjustAnimeData = (animes) => {
@@ -138,13 +116,11 @@ const adjustAnimeData = (animes) => {
   return animesList;
 };
 
-const showAnimes = async (element) => {
+const showAnimes = async () => {
+  const row = document.querySelector(".row");
   const config = getDefaultConfig();
   let animes = await getAnimes(config);
   animes = adjustAnimeData(animes.data.data);
-  const animeList = mountList(animes);
-
-  element.appendChild(animeList);
 };
 
 const resetDefaultConfig = () => {

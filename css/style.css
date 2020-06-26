@@ -1,14 +1,45 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
-html {
-	scrollbar-color: rgba(82, 2, 167, 1) rgba(1, 1, 1, 0.1);
-  	scrollbar-width: thin;
-}
 body {
 	overflow-y: scroll;
 	background-color: #111;
 	color: #fff;
 	font-family: 'Roboto', Arial, sans-serif;
+}
+
+.text-white {
+	color: #fff;
+}
+
+.main-content {
+	background-color: #f6f8fa;
+	color: #000;
+	font-size: 14px;
+}
+
+.bold {
+	font-weight: 900;
+}
+
+.form-control {
+	border-radius: 5px;
+	height: 28px;
+	font-size: 14px;
+}
+
+.background-dark {
+	background-color: #24292e;
+}
+
+.background-grey {
+	border: 0px solid #111;
+	background-color: #404448; 
+}
+
+.btn {
+	line-height: normal;
+	height: 28px;
+	font-size: 14px;
 }
 
 .flex-row {
@@ -29,9 +60,13 @@ body {
 }
 
 .list {
-	overflow-y: scroll;
+	overflow-y: hidden;
 	height: 100vh;
-  	scrollbar-width: none;
+	transition: overflow-y 1s;
+}
+
+.list:hover {
+	overflow-y: scroll;
 }
 
 li.anime {

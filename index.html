@@ -9,31 +9,52 @@
 </head>
 <body>
 	<header>
-		<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+		<nav class="navbar navbar-expand-lg navbar-light background-dark">
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<button class="show-animes btn btn-light">Show me animes</button>
-				<button class="clear-animes btn btn-light">Clear list</button>
-				<button class="show-more btn btn-light mr-auto">Show more</button>
-
-				<form class="form-inline my-2 my-lg-0">
-					<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+				<form class="form-inline my-2 my-lg-0 mr-auto">
+					<input class="form-control customize-form-control mr-sm-2 background-grey" type="search" placeholder="Search" aria-label="Search">
+					<button class="btn customize-btn btn-dark my-2 my-sm-0" type="submit">Search</button>
 				</form>
+
+				<button class="show-animes btn background-dark text-white bold">Show me animes</button>
 			</div>
 		</nav>
 	</header>
 
-	<div class="main-content container mt-5">
-		<div class="row">
-			<div class="col-sm-4">
-				<div class="anime-list list"></div>
-			</div>
+	<main>
+		<div class="jumbotron jumbotron-fluid w-75 mx-auto main-content rounded mt-3">
+			<div class="container animes-list">
+				<div class="row" >
+					<div class="col-4">
+						<div class="card" style="max-height: 400px;">
+							<img class="card-img-top" style="max-height: 400px;" src="https://media.kitsu.io/anime/cover_images/4/original.jpg" alt="">
+							<div class="card-body">
+								<p class="card-text">sadasdasd</p>
+							</div>
+						</div>
+					</div>
 
-			<div class="col-sm-8">
-				<div class="animes-info list"></div>
+					<div class="col-4">
+						<div class="card" style="max-height: 400px;">
+							<img class="card-img-top" style="max-height: 400px;" src="https://media.kitsu.io/anime/cover_images/3/original.jpg" alt="">
+							<div class="card-body">
+								<p class="card-text">asdasdsasaad</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-4">
+						<div class="card" style="max-height: 400px;">
+							<img class="card-img-top" style="max-height: 400px;" src="https://media.kitsu.io/anime/cover_images/2/original.png" alt="">
+							<div class="card-body">
+								<p class="card-text">asdasdsaddsad</p>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
+	</main>
 
 	<footer>
 		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -43,27 +64,11 @@
 		<script src="./js/script.js"></script>
 
 		<script>
-			const mainContent = document.querySelector('div.main-content')
-			const animeList = mainContent.querySelector('div.anime-list');
-			const animeInfo = mainContent.querySelector('div.animes-info');
 			const buttonToShowAnimes = document.querySelector('button.show-animes');
-			const buttonToClearList = document.querySelector('button.clear-animes')
-			const buttonToShowMore = document.querySelector('button.show-more');
-			const animesInfo = document.querySelector('div.animes-info');
 
-			setAnimesInfoContainer(animesInfo);
-
-			buttonToShowAnimes.onclick = event => {
-				showAnimes(animeList);
+			buttonToShowAnimes.onclick = (event) => {
+				showAnimes();
 			}
-
-			buttonToClearList.onclick = event => {
-				animeList.innerHTML = "";
-				animeInfo.innerHTML = "";
-				resetDefaultConfig();
-			}
-
-			buttonToShowMore.onclick = buttonToShowAnimes.onclick;
 		</script>
 	</footer>	
 </body>
